@@ -5,7 +5,17 @@
     <artifactId>xcode-project-reader</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
-
+    <inceptionYear>2012</inceptionYear>
+    <organization>
+        <name>SAP AG</name>
+    </organization>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <build>
         <plugins>
             <plugin>
@@ -29,6 +39,13 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <licenseName>apache_v2</licenseName>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -50,4 +67,13 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.1</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
