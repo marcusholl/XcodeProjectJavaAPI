@@ -25,16 +25,16 @@ import com.sap.prd.mobile.ios.mios.xcodeprojreader.ElementFactory;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.ReferenceArray;
 
-public class ShellScriptBuildPhase extends BuildPhase
+public class PBXShellScriptBuildPhase extends BuildPhase
 {
   public static final String isa = "PBXShellScriptBuildPhase";
 
-  public ShellScriptBuildPhase(ProjectFile projectFile)
+  public PBXShellScriptBuildPhase(ProjectFile projectFile)
   {
     this(projectFile, projectFile.createDict());
   }
 
-  public ShellScriptBuildPhase(ProjectFile projectFile, Dict dict)
+  public PBXShellScriptBuildPhase(ProjectFile projectFile, Dict dict)
   {
     super(projectFile, dict);
   }

@@ -26,9 +26,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.BuildPhase;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.FrameworksBuildPhase;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.ResourcesBuildPhase;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.SourcesBuildPhase;
+import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.PBXFrameworksBuildPhase;
+import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.PBXResourcesBuildPhase;
+import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.PBXSourcesBuildPhase;
 
 public class TargetTest
 {
@@ -51,8 +51,8 @@ public class TargetTest
   {
     ReferenceArray<BuildPhase> buildPhases = target.getBuildPhases();
     assertEquals(3, buildPhases.size());
-    assertEquals(SourcesBuildPhase.isa, buildPhases.get(0).getIsA());
-    assertEquals(FrameworksBuildPhase.isa, buildPhases.get(1).getIsA());
-    assertEquals(ResourcesBuildPhase.isa, buildPhases.get(2).getIsA());
+    assertEquals(PBXSourcesBuildPhase.isa, buildPhases.get(0).getIsA());
+    assertEquals(PBXFrameworksBuildPhase.isa, buildPhases.get(1).getIsA());
+    assertEquals(PBXResourcesBuildPhase.isa, buildPhases.get(2).getIsA());
   }
 }

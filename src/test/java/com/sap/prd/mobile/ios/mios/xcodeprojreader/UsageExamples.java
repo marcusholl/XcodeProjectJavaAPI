@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.BuildPhase;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.ShellScriptBuildPhase;
+import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.PBXShellScriptBuildPhase;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb.JAXBPlistParser;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb.JAXBPlistParserTest;
 
@@ -80,7 +80,7 @@ public class UsageExamples
 
 // HIGH LEVEL
     ReferenceArray<BuildPhase> buildPhases = project.getTargets().get(0).getBuildPhases();
-    ShellScriptBuildPhase phase2 = new ShellScriptBuildPhase(projectFile);
+    PBXShellScriptBuildPhase phase2 = new PBXShellScriptBuildPhase(projectFile);
     phase2.setDefaultValues();
     phase2.setShellScript("env > test.txt");
     buildPhases.add(phase2);

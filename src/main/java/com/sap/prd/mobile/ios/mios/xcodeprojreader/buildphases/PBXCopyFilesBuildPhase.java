@@ -22,16 +22,16 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Dict;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
 
-public class HeadersBuildPhase extends BuildPhase
+public class PBXCopyFilesBuildPhase extends BuildPhase
 {
-  public static final String isa = "PBXHeadersBuildPhase";
+  public static final String isa = "PBXCopyFilesBuildPhase";
 
-  public HeadersBuildPhase(ProjectFile projectFile)
+  public PBXCopyFilesBuildPhase(ProjectFile projectFile)
   {
     this(projectFile, projectFile.createDict());
   }
 
-  HeadersBuildPhase(ProjectFile projectFile, Dict buildConfigurationList)
+  PBXCopyFilesBuildPhase(ProjectFile projectFile, Dict buildConfigurationList)
   {
     super(projectFile, buildConfigurationList);
   }
