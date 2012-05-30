@@ -24,13 +24,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Dict;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.ElementFactory;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.ReferenceArray;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Target;
-
 public class ReferenceArrayTest
 {
   private ProjectFile projectFile;

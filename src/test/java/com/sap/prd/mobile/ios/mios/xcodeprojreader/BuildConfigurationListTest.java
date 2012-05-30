@@ -25,10 +25,6 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.BuildConfiguration;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.BuildConfigurationList;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.ReferenceArray;
-
 public class BuildConfigurationListTest
 {
   private BuildConfigurationList configList;

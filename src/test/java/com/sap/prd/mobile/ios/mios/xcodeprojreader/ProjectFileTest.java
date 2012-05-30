@@ -25,8 +25,6 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Plist;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb.JAXBPlistParser;
 
 public class ProjectFileTest

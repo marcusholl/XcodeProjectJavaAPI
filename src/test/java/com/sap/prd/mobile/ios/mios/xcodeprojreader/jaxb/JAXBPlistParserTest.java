@@ -43,7 +43,6 @@ import org.xml.sax.SAXParseException;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Dict;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Plist;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb.JAXBPlistParser;
 
 public class JAXBPlistParserTest
 {

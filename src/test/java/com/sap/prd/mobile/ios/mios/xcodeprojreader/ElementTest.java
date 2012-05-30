@@ -26,11 +26,6 @@ import static org.junit.Assert.assertSame;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Dict;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Element;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
-
 public class ElementTest
 {
   private static class MyElement extends Element

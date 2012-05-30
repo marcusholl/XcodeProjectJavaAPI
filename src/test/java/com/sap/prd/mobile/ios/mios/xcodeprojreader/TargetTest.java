@@ -25,8 +25,6 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.ReferenceArray;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Target;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.BuildPhase;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.FrameworksBuildPhase;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.ResourcesBuildPhase;

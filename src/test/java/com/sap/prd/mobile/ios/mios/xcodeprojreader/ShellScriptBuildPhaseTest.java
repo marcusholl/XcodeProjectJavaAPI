@@ -25,7 +25,6 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.ShellScriptBuildPhase;
 
 public class ShellScriptBuildPhaseTest
