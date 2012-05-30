@@ -5,6 +5,10 @@
     <artifactId>xcode-project-reader</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <description>
+        The xcode-project-reader library provides an Java API for read and write 
+        access to an Xcode project file.
+    </description>
     <inceptionYear>2012</inceptionYear>
     <organization>
         <name>SAP AG</name>
@@ -16,7 +20,29 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+    
+    <properties>
+        <license.excludes>**/*.pbxproj.xml,**/PropertyList-1.0.dtd</license.excludes>
+    </properties>
+    
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>1.1</version>
+                    <configuration>
+                        <licenseName>apache_v2</licenseName>
+                    </configuration>
+                </plugin>
+            </plugins>  
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -38,13 +64,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <configuration>
-                    <licenseName>apache_v2</licenseName>
-                </configuration>
             </plugin>
         </plugins>
     </build>
