@@ -35,14 +35,14 @@ public class Target extends NamedElement
 
   public BuildConfigurationList getBuildConfigurationList()
   {
-    String buildConfigurationListRef = getString("buildConfigurationList");
+    String buildConfigurationListRef = getDict().getString("buildConfigurationList");
     Dict buildConfigurationList = getProjectFile().getObjectByReference(buildConfigurationListRef);
     return new BuildConfigurationList(getProjectFile(), buildConfigurationList);
   }
 
   public ReferenceArray<BuildPhase> getBuildPhases()
   {
-    return new ReferenceArray<BuildPhase>(getProjectFile(), getOrCreateAndSetArray("buildPhases"),
+    return new ReferenceArray<BuildPhase>(getProjectFile(), getDict().getOrCreateAndSetArray("buildPhases"),
           new ElementFactory<BuildPhase>() {
             @Override
             public BuildPhase create(ProjectFile projectFile, Dict dict)

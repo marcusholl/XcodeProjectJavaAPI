@@ -41,6 +41,42 @@ class LinkedHashMapDict extends LinkedHashMap<String, Object> implements Dict
   }
 
   @Override
+  public Integer getInteger(String key)
+  {
+    return (Integer) get(key);
+  }
+
+  @Override
+  public void setInteger(String key, Integer value)
+  {
+    put(key, value);
+  }
+
+  @Override
+  public Double getDouble(String key)
+  {
+    return (Double) get(key);
+  }
+
+  @Override
+  public void setDouble(String key, Double value)
+  {
+    put(key, value);
+  }
+
+  @Override
+  public Boolean getBool(String key)
+  {
+    return (Boolean) get(key);
+  }
+
+  @Override
+  public void setBool(String key, Boolean value)
+  {
+    put(key, value);
+  }
+
+  @Override
   public Array getArray(String key)
   {
     return (Array) get(key);

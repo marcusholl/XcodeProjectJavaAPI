@@ -35,7 +35,11 @@ public class JAXBDict
       @XmlElement(name = "key", type = JAXBKey.class),
       @XmlElement(name = "string", type = String.class),
       @XmlElement(name = "dict", type = JAXBDict.class),
-      @XmlElement(name = "array", type = JAXBArray.class)
+      @XmlElement(name = "array", type = JAXBArray.class),
+      @XmlElement(name = "integer", type = Integer.class),
+      @XmlElement(name = "real", type = Double.class),
+      @XmlElement(name = "true", type = JAXBTrue.class),
+      @XmlElement(name = "false", type = JAXBFalse.class)
   })
   public Array getElements()
   {

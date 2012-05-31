@@ -19,7 +19,7 @@
  */
 package com.sap.prd.mobile.ios.mios.xcodeprojreader;
 
-public abstract class Element implements ValueProvider
+public abstract class Element
 {
   private final ProjectFile projectFile;
   private final Dict dict;
@@ -40,56 +40,8 @@ public abstract class Element implements ValueProvider
     return dict;
   }
 
-  @Override
-  public String getString(String key)
-  {
-    return dict.getString(key);
-  }
-
-  @Override
-  public void setString(String key, String value)
-  {
-    dict.setString(key, value);
-  }
-
-  @Override
-  public Array getArray(String key)
-  {
-    return dict.getArray(key);
-  }
-
-  @Override
-  public Array getOrCreateAndSetArray(String key)
-  {
-    return dict.getOrCreateAndSetArray(key);
-  }
-
-  @Override
-  public void setArray(String key, Array value)
-  {
-    dict.setArray(key, value);
-  }
-
-  @Override
-  public Dict getDict(String key)
-  {
-    return dict.getDict(key);
-  }
-
-  @Override
-  public Dict getOrCreateAndSetDict(String key)
-  {
-    return dict.getOrCreateAndSetDict(key);
-  }
-
-  @Override
-  public void setDict(String key, Dict value)
-  {
-    dict.setDict(key, value);
-  }
-
   public String getIsA()
   {
-    return getString("isa");
+    return getDict().getString("isa");
   }
 }

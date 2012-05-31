@@ -28,11 +28,11 @@ public abstract class NamedElement extends Element
 
   public String getName()
   {
-    return getString("name");
+    return getDict().getString("name");
   }
 
   public void setName(String name)
   {
-    setString("name", name);
+    getDict().setString("name", name);
   }
 }

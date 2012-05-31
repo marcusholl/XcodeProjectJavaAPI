@@ -23,4 +23,40 @@ import java.util.List;
 
 public interface Array extends List<Object>
 {
+  String getString(int index);
+
+  void addString(String value);
+
+  void setString(int index, String value);
+
+  Integer getInteger(int index);
+
+  void addInteger(Integer value);
+
+  void setInteger(int index, Integer value);
+
+  Double getDouble(int index);
+
+  void addDouble(Double value);
+
+  void setDouble(int index, Double value);
+
+  Boolean getBool(int index);
+
+  void addBool(Boolean value);
+
+  void setBool(int index, Boolean value);
+
+  Dict getDict(int index);
+
+  void addDict(Dict value);
+
+  void setDict(int index, Dict value);
+
+  Array getArray(int index);
+
+  void addArray(Array value);
+
+  void setArray(int index, Array value);
+
 }

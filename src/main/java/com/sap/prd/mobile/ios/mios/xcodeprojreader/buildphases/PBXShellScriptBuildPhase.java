@@ -41,48 +41,51 @@ public class PBXShellScriptBuildPhase extends BuildPhase
 
   public void setDefaultValues()
   {
-    setString("isa", isa);
-    setArray("files", getProjectFile().createArray());
-    setArray("inputPaths", getProjectFile().createArray());
-    setArray("outputPaths", getProjectFile().createArray());
-    setString("runOnlyForDeploymentPostprocessing", "0");
-    setString("shellPath", "/bin/sh");
+    Dict d = getDict();
+    d.setString("isa", isa);
+    d.setArray("files", getProjectFile().createArray());
+    d.setArray("inputPaths", getProjectFile().createArray());
+    d.setArray("outputPaths", getProjectFile().createArray());
+    d.setString("runOnlyForDeploymentPostprocessing", "0");
+    d.setString("shellPath", "/bin/sh");
   }
 
   public ReferenceArray<BuildFile> getFiles()
   {
-    return new ReferenceArray<BuildFile>(getProjectFile(), getOrCreateAndSetArray("files"), new BuildFileFactory());
+    return new ReferenceArray<BuildFile>(getProjectFile(), getDict().getOrCreateAndSetArray("files"),
+          new BuildFileFactory());
   }
 
   public ReferenceArray<BuildFile> getInputPaths()
   {
-    return new ReferenceArray<BuildFile>(getProjectFile(), getOrCreateAndSetArray("inputPaths"), new BuildFileFactory());
+    return new ReferenceArray<BuildFile>(getProjectFile(), getDict().getOrCreateAndSetArray("inputPaths"),
+          new BuildFileFactory());
   }
 
   public ReferenceArray<BuildFile> getOutputPaths()
   {
-    return new ReferenceArray<BuildFile>(getProjectFile(), getOrCreateAndSetArray("outputPaths"),
+    return new ReferenceArray<BuildFile>(getProjectFile(), getDict().getOrCreateAndSetArray("outputPaths"),
           new BuildFileFactory());
   }
 
   public String getRunOnlyForDeploymentPostprocessing()
   {
-    return getString("runOnlyForDeploymentPostprocessing");
+    return getDict().getString("runOnlyForDeploymentPostprocessing");
   }
 
   public String getShellPath()
   {
-    return getString("shellPath");
+    return getDict().getString("shellPath");
   }
 
   public String getShellScript()
   {
-    return getString("shellScript");
+    return getDict().getString("shellScript");
   }
 
   public void setShellScript(String script)
   {
-    setString("shellScript", script);
+    getDict().setString("shellScript", script);
   }
 
   private static class BuildFileFactory implements ElementFactory<BuildFile>

@@ -33,13 +33,13 @@ public class BuildConfigurationList extends Element
 
   public String getDefaultConfigurationName()
   {
-    return getString("defaultConfigurationName");
+    return getDict().getString("defaultConfigurationName");
   }
 
   public ReferenceArray<BuildConfiguration> getBuildConfigurations()
   {
     return new ReferenceArray<BuildConfiguration>(getProjectFile(),
-          getOrCreateAndSetArray("buildConfigurations"), new ElementFactory<BuildConfiguration>() {
+          getDict().getOrCreateAndSetArray("buildConfigurations"), new ElementFactory<BuildConfiguration>() {
             @Override
             public BuildConfiguration create(ProjectFile projectFile, Dict dict)
             {

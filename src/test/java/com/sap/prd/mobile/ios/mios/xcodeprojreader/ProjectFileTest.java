@@ -60,7 +60,7 @@ public class ProjectFileTest
   @Test
   public void rootObject()
   {
-    assertEquals("83FC273C15580501000A0343", projectFile.getString("rootObject"));
+    assertEquals("83FC273C15580501000A0343", projectFile.getDict().getString("rootObject"));
   }
 
   @Test

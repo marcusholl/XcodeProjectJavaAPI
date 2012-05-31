@@ -76,7 +76,7 @@ public class ReferenceArray<T extends Element> implements Iterable<T>
   {
     for (T object : this)
     {
-      if (name.equals(object.getString("name")))
+      if (name.equals(object.getDict().getString("name")))
       {
         return object;
       }

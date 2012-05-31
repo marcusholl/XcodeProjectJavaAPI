@@ -48,7 +48,7 @@ public class ProjectTest
     assertEquals(1, targets.size());
     Target target1 = targets.get(0);
     assertEquals("MyTest", target1.getName());
-    assertEquals("com.apple.product-type.application", target1.getString("productType"));
+    assertEquals("com.apple.product-type.application", target1.getDict().getString("productType"));
   }
 
   @Test

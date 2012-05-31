@@ -34,7 +34,7 @@ public class UsageExamples
   public void usage() throws Exception
   {
     JAXBPlistParser parser = new JAXBPlistParser();
-    
+
     // optional step, if project file is not already in XML format
     // parser.convert(JAXBPlistParserTest.fileName, JAXBPlistParserTest.fileName)
     Plist plist = parser.load(JAXBPlistParserTest.fileName);
@@ -60,12 +60,12 @@ public class UsageExamples
 
     BuildSettings buildSettings = config.getBuildSettings();
     assertEquals("5.1",
-          buildSettings.getString("IPHONEOS_DEPLOYMENT_TARGET"));
+          buildSettings.getDict().getString("IPHONEOS_DEPLOYMENT_TARGET"));
     assertEquals("YES",
-          buildSettings.getString("VALIDATE_PRODUCT"));
+          buildSettings.getDict().getString("VALIDATE_PRODUCT"));
 
 // LOW LEVEL (not recommended)
-    Array buildPhaseRefs = project.getTargets().get(0).getArray("buildPhases");
+    Array buildPhaseRefs = project.getTargets().get(0).getDict().getArray("buildPhases");
     String ref = projectFile.generateReference();
     buildPhaseRefs.add(ref);
     Dict phase = projectFile.createDict();
@@ -84,7 +84,7 @@ public class UsageExamples
     phase2.setDefaultValues();
     phase2.setShellScript("env > test.txt");
     buildPhases.add(phase2);
-
+    
 //parser.save(plist, JAXBPlistParserTest.fileName);
   }
 }

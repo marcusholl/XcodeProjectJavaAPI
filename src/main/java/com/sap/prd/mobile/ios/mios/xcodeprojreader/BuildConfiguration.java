@@ -33,6 +33,6 @@ public class BuildConfiguration extends NamedElement
 
   public BuildSettings getBuildSettings()
   {
-    return new BuildSettings(getProjectFile(), getDict("buildSettings"));
+    return new BuildSettings(getProjectFile(), getDict().getDict("buildSettings"));
   }
 }

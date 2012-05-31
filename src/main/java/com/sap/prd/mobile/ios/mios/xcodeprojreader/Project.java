@@ -33,19 +33,19 @@ public class Project extends Element
 
   public String getCompatibilityVersion()
   {
-    return getString("compatibilityVersion");
+    return getDict().getString("compatibilityVersion");
   }
 
   public BuildConfigurationList getBuildConfigurationList()
   {
-    String buildConfigurationListRef = getString("buildConfigurationList");
+    String buildConfigurationListRef = getDict().getString("buildConfigurationList");
     Dict buildConfigurationList = getProjectFile().getObjectByReference(buildConfigurationListRef);
     return new BuildConfigurationList(getProjectFile(), buildConfigurationList);
   }
 
   public ReferenceArray<Target> getTargets()
   {
-    return new ReferenceArray<Target>(getProjectFile(), getOrCreateAndSetArray("targets"),
+    return new ReferenceArray<Target>(getProjectFile(), getDict().getOrCreateAndSetArray("targets"),
           new ElementFactory<Target>() {
             @Override
             public Target create(ProjectFile projectFile, Dict dict)

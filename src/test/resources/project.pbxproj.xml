@@ -14,7 +14,26 @@
 		<array>
 			<string>test</string>
 		</array>
+        <integer>5</integer>
+        <real>5.5</real>
+        <true/>
+        <false/>
 	</array>
+    <key>int</key>
+    <integer>5</integer>
+    <key>real</key>
+    <real>5.5</real>
+    <key>bool_true</key>
+    <true/>
+    <key>bool_false</key>
+    <false/>
+    <key>str</key>
+    <string>hello</string>
+    <key>dict</key>
+    <dict>
+    	<key>hello</key>
+    	<string>world</string>
+    </dict>
 	<!--  -->
 
 	<key>archiveVersion</key>

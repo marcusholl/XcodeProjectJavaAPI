@@ -48,6 +48,10 @@ public class JAXBDictAdapter extends XmlAdapter<JAXBDict, Dict>
       {
         value = new JAXBArrayAdapter().marshal((Array) value);
       }
+      else if (value instanceof Boolean)
+      {
+        value = ((Boolean)value) ? new JAXBTrue() : new JAXBFalse();
+      }
       elements.add(value);
     }
     jaxbDict.setElements(elements);
@@ -74,6 +78,14 @@ public class JAXBDictAdapter extends XmlAdapter<JAXBDict, Dict>
       else if (value instanceof JAXBArray)
       {
         value = new JAXBArrayAdapter().unmarshal((JAXBArray) value);
+      }
+      else if (value instanceof JAXBTrue)
+      {
+        value = Boolean.TRUE;
+      }
+      else if (value instanceof JAXBFalse)
+      {
+        value = Boolean.FALSE;
       }
       dict.put((String) key, value);
     }

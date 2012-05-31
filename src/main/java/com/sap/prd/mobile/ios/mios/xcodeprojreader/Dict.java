@@ -21,7 +21,33 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader;
 
 import java.util.Map;
 
-public interface Dict extends Map<String, Object>, ValueProvider
+public interface Dict extends Map<String, Object>
 {
+  String getString(String key);
 
+  void setString(String key, String value);
+
+  Integer getInteger(String key);
+
+  void setInteger(String key, Integer value);
+
+  Double getDouble(String key);
+
+  void setDouble(String key, Double value);
+
+  Boolean getBool(String key);
+
+  void setBool(String key, Boolean value);
+
+  Array getArray(String key);
+
+  Array getOrCreateAndSetArray(String key);
+
+  void setArray(String key, Array value);
+
+  Dict getDict(String key);
+
+  Dict getOrCreateAndSetDict(String key);
+
+  void setDict(String key, Dict value);
 }

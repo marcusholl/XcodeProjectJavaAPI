@@ -49,7 +49,7 @@ public class ReferenceArrayTest
   {
     assertEquals(1, refsArray.size());
     assertEquals("PBXNativeTarget", refsArray.get(0).getIsA());
-    assertEquals("com.apple.product-type.application", refsArray.getByName("MyTest").getString("productType"));
+    assertEquals("com.apple.product-type.application", refsArray.getByName("MyTest").getDict().getString("productType"));
   }
 
   @Test
@@ -57,11 +57,11 @@ public class ReferenceArrayTest
   {
     Target target2 = new Target(projectFile);
     target2.setName("target2");
-    target2.setString("KEY", "VALUE");
+    target2.getDict().setString("KEY", "VALUE");
     refsArray.add(target2);
 
     assertEquals(2, refsArray.size());
-    assertEquals("VALUE", refsArray.get(1).getString("KEY"));
-    assertEquals("VALUE", refsArray.getByName("target2").getString("KEY"));
+    assertEquals("VALUE", refsArray.get(1).getDict().getString("KEY"));
+    assertEquals("VALUE", refsArray.getByName("target2").getDict().getString("KEY"));
   }
 }

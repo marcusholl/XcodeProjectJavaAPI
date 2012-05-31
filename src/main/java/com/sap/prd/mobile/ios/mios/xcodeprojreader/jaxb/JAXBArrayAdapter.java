@@ -41,6 +41,10 @@ public class JAXBArrayAdapter extends XmlAdapter<JAXBArray, Array>
       {
         value = marshal((Array) value);
       }
+      else if (value instanceof Boolean)
+      {
+        value = ((Boolean)value) ? new JAXBTrue() : new JAXBFalse();
+      }
       elements.add(value);
     }
     jaxbArray.setElements(elements);
@@ -60,6 +64,14 @@ public class JAXBArrayAdapter extends XmlAdapter<JAXBArray, Array>
       else if (value instanceof JAXBArray)
       {
         value = unmarshal((JAXBArray) value);
+      }
+      else if (value instanceof JAXBTrue)
+      {
+        value = Boolean.TRUE;
+      }
+      else if (value instanceof JAXBFalse)
+      {
+        value = Boolean.FALSE;
       }
       array.add(value);
     }

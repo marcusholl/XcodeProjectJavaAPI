@@ -52,7 +52,7 @@ public class ProjectFile extends Element
 
   public String getObjectVersion()
   {
-    return getString("objectVersion");
+    return getDict().getString("objectVersion");
   }
 
   public Dict getObjectByReference(String reference)
@@ -85,12 +85,12 @@ public class ProjectFile extends Element
 
   private Dict getObjects()
   {
-    return getDict("objects");
+    return getDict().getDict("objects");
   }
 
   public Project getProject()
   {
-    String projectRef = getString("rootObject");
+    String projectRef = getDict().getString("rootObject");
     Dict project = getObjectByReference(projectRef);
     return new Project(this, project);
   }

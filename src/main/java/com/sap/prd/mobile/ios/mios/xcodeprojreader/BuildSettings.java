@@ -33,6 +33,6 @@ public class BuildSettings extends Element
 
   public String getProductName()
   {
-    return getString("PRODUCT_NAME");
+    return getDict().getString("PRODUCT_NAME");
   }
 }
