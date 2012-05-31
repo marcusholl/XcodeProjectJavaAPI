@@ -22,16 +22,16 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Dict;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
 
-public class ResourcesBuildPhase extends BuildPhase
+public class PBXAppleScriptBuildPhase extends BuildPhase
 {
-  public static final String isa = "PBXResourcesBuildPhase";
+  public static final String isa = "PBXAppleScriptBuildPhase"; // unconfirmed
 
-  public ResourcesBuildPhase(ProjectFile projectFile)
+  public PBXAppleScriptBuildPhase(ProjectFile projectFile)
   {
     this(projectFile, projectFile.createDict());
   }
 
-  ResourcesBuildPhase(ProjectFile projectFile, Dict buildConfigurationList)
+  PBXAppleScriptBuildPhase(ProjectFile projectFile, Dict buildConfigurationList)
   {
     super(projectFile, buildConfigurationList);
   }

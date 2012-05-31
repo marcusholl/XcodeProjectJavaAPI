@@ -25,7 +25,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.ShellScriptBuildPhase;
+import com.sap.prd.mobile.ios.mios.xcodeprojreader.buildphases.PBXShellScriptBuildPhase;
 
 public class ShellScriptBuildPhaseTest
 {
@@ -40,7 +40,7 @@ public class ShellScriptBuildPhaseTest
   @Test
   public void defaultValues()
   {
-    ShellScriptBuildPhase phase = new ShellScriptBuildPhase(projectFile);
+    PBXShellScriptBuildPhase phase = new PBXShellScriptBuildPhase(projectFile);
 
     assertNull(phase.getIsA());
     assertEquals(0, phase.getFiles().size());
@@ -51,7 +51,7 @@ public class ShellScriptBuildPhaseTest
 
     phase.setDefaultValues();
 
-    assertEquals(ShellScriptBuildPhase.isa, phase.getIsA());
+    assertEquals(PBXShellScriptBuildPhase.isa, phase.getIsA());
     assertEquals(0, phase.getFiles().size());
     assertEquals(0, phase.getInputPaths().size());
     assertEquals(0, phase.getOutputPaths().size());
@@ -62,7 +62,7 @@ public class ShellScriptBuildPhaseTest
   @Test
   public void shellPath()
   {
-    ShellScriptBuildPhase phase = new ShellScriptBuildPhase(projectFile);
+    PBXShellScriptBuildPhase phase = new PBXShellScriptBuildPhase(projectFile);
     phase.setShellScript("env > test.txt");
     assertEquals("env > test.txt", phase.getShellScript());
   }

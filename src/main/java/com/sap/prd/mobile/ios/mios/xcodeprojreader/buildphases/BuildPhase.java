@@ -25,6 +25,9 @@ import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
 
 public abstract class BuildPhase extends Element
 {
+  
+  private final static Package buildPhasesPackage = BuildPhase.class.getPackage();
+  
   public BuildPhase(ProjectFile projectFile)
   {
     this(projectFile, projectFile.createDict());
@@ -37,41 +40,15 @@ public abstract class BuildPhase extends Element
 
   public static BuildPhase create(ProjectFile projectFile, Dict dict)
   {
-    String isa = dict.getString("isa");
-    BuildPhase phase = null;
-    if (AppleScriptBuildPhase.isa.equals(isa))
-    {
-      phase = new AppleScriptBuildPhase(projectFile, dict);
+    final String isa = dict.getString("isa");
+    try {
+      final Class<?> clazz = Class.forName(buildPhasesPackage.getName() + "." + isa);
+      return (BuildPhase)clazz.getDeclaredConstructor(new Class[] {ProjectFile.class, Dict.class}).newInstance(projectFile, dict);
     }
-    else if (CopyFilesBuildPhase.isa.equals(isa))
-    {
-      phase = new CopyFilesBuildPhase(projectFile, dict);
+    catch (RuntimeException e) {
+      throw e;
+    } catch(Exception e) {
+      throw new RuntimeException("Could not instanciate build phase for type (isa) '" +  isa + "'.", e);      
     }
-    else if (FrameworksBuildPhase.isa.equals(isa))
-    {
-      phase = new FrameworksBuildPhase(projectFile, dict);
-    }
-    else if (HeadersBuildPhase.isa.equals(isa))
-    {
-      phase = new HeadersBuildPhase(projectFile, dict);
-    }
-    else if (ResourcesBuildPhase.isa.equals(isa))
-    {
-      phase = new ResourcesBuildPhase(projectFile, dict);
-    }
-    else if (ShellScriptBuildPhase.isa.equals(isa))
-    {
-      phase = new ShellScriptBuildPhase(projectFile, dict);
-    }
-    else if (SourcesBuildPhase.isa.equals(isa))
-    {
-      phase = new SourcesBuildPhase(projectFile, dict);
-    }
-    else
-    {
-      throw new IllegalStateException("Unknown build phase (isa: " + isa + ")");
-    }
-    return phase;
   }
-
 }
