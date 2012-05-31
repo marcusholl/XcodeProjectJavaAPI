@@ -22,7 +22,6 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
-import com.sap.prd.mobile.ios.mios.xcodeprojreader.Dict;
 
 public class JAXBArrayAdapter extends XmlAdapter<JAXBArray, Array>
 {
@@ -31,20 +30,10 @@ public class JAXBArrayAdapter extends XmlAdapter<JAXBArray, Array>
   {
     JAXBArray jaxbArray = new JAXBArray();
     Array elements = new JAXBPlist().createArray();
+    JAXBPlistElementConverter converter = new JAXBPlistElementConverter(new JAXBDictAdapter(), this);
     for (Object value : array)
     {
-      if (value instanceof Dict)
-      {
-        value = new JAXBDictAdapter().marshal((Dict) value);
-      }
-      else if (value instanceof Array)
-      {
-        value = marshal((Array) value);
-      }
-      else if (value instanceof Boolean)
-      {
-        value = ((Boolean)value) ? new JAXBTrue() : new JAXBFalse();
-      }
+      value = converter.convertToJAXB(value);
       elements.add(value);
     }
     jaxbArray.setElements(elements);
@@ -55,24 +44,10 @@ public class JAXBArrayAdapter extends XmlAdapter<JAXBArray, Array>
   public Array unmarshal(JAXBArray jaxbArray) throws Exception
   {
     Array array = new JAXBPlist().createArray();
+    JAXBPlistElementConverter converter = new JAXBPlistElementConverter(new JAXBDictAdapter(), this);
     for (Object value : jaxbArray.getElements())
     {
-      if (value instanceof JAXBDict)
-      {
-        value = new JAXBDictAdapter().unmarshal((JAXBDict) value);
-      }
-      else if (value instanceof JAXBArray)
-      {
-        value = unmarshal((JAXBArray) value);
-      }
-      else if (value instanceof JAXBTrue)
-      {
-        value = Boolean.TRUE;
-      }
-      else if (value instanceof JAXBFalse)
-      {
-        value = Boolean.FALSE;
-      }
+      value = converter.convertFromJAXB(value);
       array.add(value);
     }
     return array;

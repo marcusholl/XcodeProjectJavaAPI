@@ -33,6 +33,7 @@ public class JAXBDictAdapter extends XmlAdapter<JAXBDict, Dict>
   {
     JAXBDict jaxbDict = new JAXBDict();
     Array elements = new JAXBPlist().createArray();
+    JAXBPlistElementConverter converter = new JAXBPlistElementConverter(this, new JAXBArrayAdapter());
     for (Map.Entry<String, Object> entry : dict.entrySet())
     {
       JAXBKey key = new JAXBKey();
@@ -40,18 +41,8 @@ public class JAXBDictAdapter extends XmlAdapter<JAXBDict, Dict>
       elements.add(key);
 
       Object value = entry.getValue();
-      if (value instanceof Dict)
-      {
-        value = marshal((Dict) value);
-      }
-      else if (value instanceof Array)
-      {
-        value = new JAXBArrayAdapter().marshal((Array) value);
-      }
-      else if (value instanceof Boolean)
-      {
-        value = ((Boolean)value) ? new JAXBTrue() : new JAXBFalse();
-      }
+      value = converter.convertToJAXB(value);
+
       elements.add(value);
     }
     jaxbDict.setElements(elements);
@@ -62,6 +53,7 @@ public class JAXBDictAdapter extends XmlAdapter<JAXBDict, Dict>
   public Dict unmarshal(JAXBDict jaxbDict) throws Exception
   {
     Dict dict = new LinkedHashMapDict();
+    JAXBPlistElementConverter converter = new JAXBPlistElementConverter(this, new JAXBArrayAdapter());
     for (int i = 0; i < jaxbDict.getElements().size(); i += 2)
     {
       Object key = jaxbDict.getElements().get(i);
@@ -71,22 +63,8 @@ public class JAXBDictAdapter extends XmlAdapter<JAXBDict, Dict>
       }
 
       Object value = jaxbDict.getElements().get(i + 1);
-      if (value instanceof JAXBDict)
-      {
-        value = unmarshal((JAXBDict) value);
-      }
-      else if (value instanceof JAXBArray)
-      {
-        value = new JAXBArrayAdapter().unmarshal((JAXBArray) value);
-      }
-      else if (value instanceof JAXBTrue)
-      {
-        value = Boolean.TRUE;
-      }
-      else if (value instanceof JAXBFalse)
-      {
-        value = Boolean.FALSE;
-      }
+      value = converter.convertFromJAXB(value);
+
       dict.put((String) key, value);
     }
     return dict;
