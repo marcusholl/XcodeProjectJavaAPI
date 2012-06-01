@@ -19,10 +19,10 @@
  */
 package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
-@XmlRootElement(name = "key")
+@XmlType(name = "key")
 public class JAXBKey
 {
   private String value;

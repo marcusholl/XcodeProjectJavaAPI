@@ -21,12 +21,12 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
 
-@XmlRootElement(name = "array")
+@XmlType(name = "array")
 @XmlJavaTypeAdapter(JAXBArrayAdapter.class)
 public class JAXBArray
 {

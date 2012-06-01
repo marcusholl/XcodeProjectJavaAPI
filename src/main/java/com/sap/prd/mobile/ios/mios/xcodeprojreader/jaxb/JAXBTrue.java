@@ -1,8 +1,8 @@
 package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "true")
+@XmlType(name = "true")
 public class JAXBTrue
 {
 }

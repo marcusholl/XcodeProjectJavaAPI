@@ -21,11 +21,11 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
 
-@XmlRootElement(name = "dict")
+@XmlType(name = "dict")
 public class JAXBDict
 {
 
