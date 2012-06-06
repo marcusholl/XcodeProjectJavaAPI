@@ -21,6 +21,7 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -44,7 +45,16 @@ public class ProjectFileTest
     Plist plist = parser.load(fileName);
     return new ProjectFile(plist);
   }
-
+  
+  @Test
+  public void plist() throws Exception
+  {
+    final String fileName = "src/test/resources/project.pbxproj.xml";
+    JAXBPlistParser parser = new JAXBPlistParser();
+    Plist plist = parser.load(fileName);
+    assertSame(plist, new ProjectFile(plist).getPlist());
+  }
+  
   @Test
   public void version()
   {
