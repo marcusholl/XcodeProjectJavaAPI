@@ -41,10 +41,16 @@ import org.xml.sax.XMLReader;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Plist;
 
-// TODO unsupported element types: Date, Data, Integer, Real
+// TODO unsupported element types: Date, Data
 public class JAXBPlistParser
 {
   public Plist load(String projectFile) throws SAXException, ParserConfigurationException, FileNotFoundException,
+        JAXBException
+  {
+    return load(new File(projectFile));
+  }
+
+  public Plist load(File projectFile) throws SAXException, ParserConfigurationException, FileNotFoundException,
         JAXBException
   {
     InputSource project = new InputSource(new FileReader(projectFile));
@@ -95,12 +101,17 @@ public class JAXBPlistParser
     return ss;
   }
 
-  public void save(Plist plist, String fileName) throws JAXBException
+  public void save(Plist plist, String projectFile) throws JAXBException
   {
-    marshallPlist(plist, fileName);
+    save(plist, new File(projectFile));
   }
 
-  private void marshallPlist(Plist plist, String projectFile) throws JAXBException
+  public void save(Plist plist, File projectFile) throws JAXBException
+  {
+    marshallPlist(plist, projectFile);
+  }
+
+  private void marshallPlist(Plist plist, File projectFile) throws JAXBException
   {
     JAXBContext ctx = JAXBContext.newInstance(com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb.JAXBPlist.class);
     Marshaller marshaller = ctx.createMarshaller();
@@ -110,13 +121,19 @@ public class JAXBPlistParser
             "com.sun.xml.internal.bind.xmlHeaders",
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">");
     marshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
-    marshaller.marshal(plist, new File(projectFile));
+    marshaller.marshal(plist, projectFile);
   }
 
-  public void convert(String projectFile, File destinationProjectFile) throws IOException
+  public void convert(String projectFile, String destinationProjectFile) throws IOException
+  {
+    convert(new File(projectFile), new File(destinationProjectFile));
+  }
+
+  public void convert(File projectFile, File destinationProjectFile) throws IOException
   {
     Process exec = Runtime.getRuntime().exec(
-          new String[] { "plutil", "-convert", "xml1", "-o", destinationProjectFile.getAbsolutePath(), projectFile });
+          new String[] { "plutil", "-convert", "xml1", "-o", destinationProjectFile.getAbsolutePath(),
+              projectFile.getAbsolutePath() });
     try
     {
       exec.waitFor();

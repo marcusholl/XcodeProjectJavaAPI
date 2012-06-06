@@ -90,7 +90,7 @@ public class JAXBPlistParserTest
     File xmlProj = File.createTempFile("project", ".pbxproj");
     xmlProj.deleteOnExit();
 
-    parser.convert(fileNameOpenStep, xmlProj);
+    parser.convert(fileNameOpenStep, xmlProj.getAbsolutePath());
     Plist plist = parser.load(xmlProj.getAbsolutePath());
     assertEquals("1.0", plist.getVersion());
   }
