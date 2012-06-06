@@ -45,7 +45,7 @@ public class ProjectFileTest
     Plist plist = parser.load(fileName);
     return new ProjectFile(plist);
   }
-  
+
   @Test
   public void plist() throws Exception
   {
@@ -54,7 +54,7 @@ public class ProjectFileTest
     Plist plist = parser.load(fileName);
     assertSame(plist, new ProjectFile(plist).getPlist());
   }
-  
+
   @Test
   public void version()
   {

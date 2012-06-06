@@ -25,9 +25,9 @@ import com.sap.prd.mobile.ios.mios.xcodeprojreader.ProjectFile;
 
 public abstract class BuildPhase extends Element
 {
-  
+
   private final static Package buildPhasesPackage = BuildPhase.class.getPackage();
-  
+
   public BuildPhase(ProjectFile projectFile)
   {
     this(projectFile, projectFile.createDict());
@@ -43,12 +43,14 @@ public abstract class BuildPhase extends Element
     final String isa = dict.getString("isa");
     try {
       final Class<?> clazz = Class.forName(buildPhasesPackage.getName() + "." + isa);
-      return (BuildPhase)clazz.getDeclaredConstructor(new Class[] {ProjectFile.class, Dict.class}).newInstance(projectFile, dict);
+      return (BuildPhase) clazz.getDeclaredConstructor(new Class[] { ProjectFile.class, Dict.class }).newInstance(
+            projectFile, dict);
     }
     catch (RuntimeException e) {
       throw e;
-    } catch(Exception e) {
-      throw new RuntimeException("Could not instanciate build phase for type (isa) '" +  isa + "'.", e);      
+    }
+    catch (Exception e) {
+      throw new RuntimeException("Could not instanciate build phase for type (isa) '" + isa + "'.", e);
     }
   }
 }

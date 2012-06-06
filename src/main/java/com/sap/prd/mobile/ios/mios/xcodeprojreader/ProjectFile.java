@@ -34,7 +34,7 @@ public class ProjectFile extends Element
     super(null, plist.getDict());
     this.plist = plist;
   }
-  
+
   public Plist getPlist()
   {
     return plist;

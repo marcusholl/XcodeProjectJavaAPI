@@ -84,7 +84,7 @@ public class UsageExamples
     phase2.setDefaultValues();
     phase2.setShellScript("env > test.txt");
     buildPhases.add(phase2);
-    
+
 //parser.save(plist, JAXBPlistParserTest.fileName);
   }
 }
