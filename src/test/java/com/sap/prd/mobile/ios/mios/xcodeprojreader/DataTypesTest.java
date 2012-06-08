@@ -140,6 +140,38 @@ public class DataTypesTest
   }
 
   @Test
+  public void dataInDictAsBytes() throws Exception
+  {
+    assertEquals("hello world", new String(dict.getData("data"), "UTF-8"));
+    dict.setData("data", "test".getBytes("UTF-8"));
+    assertEquals("test", new String(dict.getData("data"), "UTF-8"));
+  }
+
+  @Test
+  public void dataInArrayAsBytes() throws Exception
+  {
+    assertEquals("hello world", new String(array.getData(8), "UTF-8"));
+    array.setData(8, "test".getBytes("UTF-8"));
+    assertEquals("test", new String(array.getData(8), "UTF-8"));
+  }
+
+  @Test
+  public void dataInDictAsString() throws Exception
+  {
+    assertEquals("hello world", dict.getDataAsUTF8String("data"));
+    dict.setDataAsUTF8String("data", "test");
+    assertEquals("test", dict.getDataAsUTF8String("data"));
+  }
+
+  @Test
+  public void dataInArrayAsString() throws Exception
+  {
+    assertEquals("hello world", array.getDataAsUTF8String(8));
+    array.setDataAsUTF8String(8, "test");
+    assertEquals("test", array.getDataAsUTF8String(8));
+  }
+
+  @Test
   public void dictInDict()
   {
     assertEquals("world", dict.getDict("dict").getString("hello"));
@@ -175,7 +207,7 @@ public class DataTypesTest
   public void getOrCreateAndSetArrayInDict()
   {
     Array array = dict.getOrCreateAndSetArray("arraytest");
-    assertEquals(8, array.size());
+    assertEquals(9, array.size());
     assertEquals("value", array.get(0));
   }
 

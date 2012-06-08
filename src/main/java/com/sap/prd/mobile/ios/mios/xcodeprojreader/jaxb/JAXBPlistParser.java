@@ -41,7 +41,6 @@ import org.xml.sax.XMLReader;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Plist;
 
-// TODO unsupported element type: Data
 public class JAXBPlistParser
 {
   public Plist load(String projectFile) throws SAXException, ParserConfigurationException, FileNotFoundException,

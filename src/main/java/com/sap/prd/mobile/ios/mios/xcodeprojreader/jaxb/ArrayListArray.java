@@ -19,6 +19,7 @@
  */
 package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -117,6 +118,64 @@ class ArrayListArray extends ArrayList<Object> implements Array
   public void addDate(Date value)
   {
     add(value);
+  }
+
+  @Override
+  public byte[] getData(int index)
+  {
+    return (byte[]) get(index);
+  }
+
+  @Override
+  public String getDataAsUTF8String(int index)
+  {
+    byte[] bytes = (byte[]) get(index);
+    try
+    {
+      return new String(bytes, "UTF-8");
+    }
+    catch (UnsupportedEncodingException e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public void setData(int index, byte[] value)
+  {
+    set(index, value);
+  }
+
+  @Override
+  public void setDataAsUTF8String(int index, String value)
+  {
+    try
+    {
+      set(index, value.getBytes("UTF-8"));
+    }
+    catch (UnsupportedEncodingException e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public void addData(byte[] value)
+  {
+    add(value);
+  }
+
+  @Override
+  public void addDataAsUTF8String(String value)
+  {
+    try
+    {
+      add(value.getBytes("UTF-8"));
+    }
+    catch (UnsupportedEncodingException e)
+    {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override

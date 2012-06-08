@@ -65,6 +65,11 @@ public class JAXBPlistElementConverter
       JAXBDate date = (JAXBDate) value;
       value = DatatypeConverter.parseDateTime(date.getValue()).getTime();
     }
+    else if (value instanceof JAXBData)
+    {
+      JAXBData data = (JAXBData) value;
+      value = DatatypeConverter.parseBase64Binary(data.getValue());
+    }
     return value;
   }
 
@@ -87,6 +92,13 @@ public class JAXBPlistElementConverter
       JAXBDate date = new JAXBDate();
       date.setValue(format.format((Date) value));
       value = date;
+    }
+    else if (value instanceof byte[])
+    {
+      JAXBData data = new JAXBData();
+      byte[] bytes = (byte[]) value;
+      data.setValue(DatatypeConverter.printBase64Binary(bytes));
+      value = data;
     }
     return value;
   }

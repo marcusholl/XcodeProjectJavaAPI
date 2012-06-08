@@ -44,6 +44,14 @@ public interface Dict extends Map<String, Object>
 
   void setDate(String key, Date value);
 
+  byte[] getData(String key);
+
+  String getDataAsUTF8String(String key);
+
+  void setData(String key, byte[] value);
+
+  void setDataAsUTF8String(String key, String value);
+
   Array getArray(String key);
 
   Array getOrCreateAndSetArray(String key);

@@ -40,7 +40,8 @@ public class JAXBDict
       @XmlElement(name = "real", type = Double.class),
       @XmlElement(name = "true", type = JAXBTrue.class),
       @XmlElement(name = "false", type = JAXBFalse.class),
-      @XmlElement(name = "date", type = JAXBDate.class)
+      @XmlElement(name = "date", type = JAXBDate.class),
+      @XmlElement(name = "data", type = JAXBData.class)
   })
   public Array getElements()
   {

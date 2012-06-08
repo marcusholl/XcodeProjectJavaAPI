@@ -19,6 +19,7 @@
  */
 package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
@@ -87,6 +88,45 @@ class LinkedHashMapDict extends LinkedHashMap<String, Object> implements Dict
   public void setDate(String key, Date value)
   {
     put(key, value);
+  }
+
+  @Override
+  public byte[] getData(String key)
+  {
+    return (byte[]) get(key);
+  }
+
+  @Override
+  public String getDataAsUTF8String(String key)
+  {
+    byte[] bytes = (byte[]) get(key);
+    try
+    {
+      return new String(bytes, "UTF-8");
+    }
+    catch (UnsupportedEncodingException e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public void setData(String key, byte[] value)
+  {
+    put(key, value);
+  }
+
+  @Override
+  public void setDataAsUTF8String(String key, String value)
+  {
+    try
+    {
+      put(key, value.getBytes("UTF-8"));
+    }
+    catch (UnsupportedEncodingException e)
+    {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override

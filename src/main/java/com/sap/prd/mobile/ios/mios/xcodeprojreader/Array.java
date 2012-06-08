@@ -54,6 +54,18 @@ public interface Array extends List<Object>
 
   void addDate(Date value);
 
+  byte[] getData(int index);
+
+  String getDataAsUTF8String(int index);
+
+  void setData(int index, byte[] value);
+
+  void setDataAsUTF8String(int index, String value);
+
+  void addData(byte[] value);
+
+  void addDataAsUTF8String(String value);
+
   Dict getDict(int index);
 
   void addDict(Dict value);
