@@ -19,6 +19,7 @@
  */
 package com.sap.prd.mobile.ios.mios.xcodeprojreader;
 
+import java.util.Date;
 import java.util.Map;
 
 public interface Dict extends Map<String, Object>
@@ -38,6 +39,10 @@ public interface Dict extends Map<String, Object>
   Boolean getBool(String key);
 
   void setBool(String key, Boolean value);
+
+  Date getDate(String key);
+
+  void setDate(String key, Date value);
 
   Array getArray(String key);
 

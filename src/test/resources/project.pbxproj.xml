@@ -18,6 +18,7 @@
         <real>5.5</real>
         <true/>
         <false/>
+        <date>2012-05-31T14:38:28Z</date>
 	</array>
     <key>int</key>
     <integer>5</integer>
@@ -34,6 +35,8 @@
     	<key>hello</key>
     	<string>world</string>
     </dict>
+    <key>date</key>
+    <date>2012-05-31T14:38:28Z</date>
 	<!--  -->
 
 	<key>archiveVersion</key>

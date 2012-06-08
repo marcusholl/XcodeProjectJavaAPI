@@ -20,6 +20,7 @@
 package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Dict;
@@ -98,6 +99,24 @@ class ArrayListArray extends ArrayList<Object> implements Array
   public void setBool(int index, Boolean value)
   {
     set(index, value);
+  }
+
+  @Override
+  public Date getDate(int index)
+  {
+    return (Date) get(index);
+  }
+
+  @Override
+  public void setDate(int index, Date value)
+  {
+    set(index, value);
+  }
+
+  @Override
+  public void addDate(Date value)
+  {
+    add(value);
   }
 
   @Override

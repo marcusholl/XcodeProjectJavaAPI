@@ -19,6 +19,7 @@
  */
 package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
@@ -72,6 +73,18 @@ class LinkedHashMapDict extends LinkedHashMap<String, Object> implements Dict
 
   @Override
   public void setBool(String key, Boolean value)
+  {
+    put(key, value);
+  }
+
+  @Override
+  public Date getDate(String key)
+  {
+    return (Date) get(key);
+  }
+
+  @Override
+  public void setDate(String key, Date value)
   {
     put(key, value);
   }

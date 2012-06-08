@@ -19,6 +19,12 @@
  */
 package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+import javax.xml.bind.DatatypeConverter;
+
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Array;
 import com.sap.prd.mobile.ios.mios.xcodeprojreader.Dict;
 
@@ -27,10 +33,13 @@ public class JAXBPlistElementConverter
   private final JAXBDictAdapter dictAdapter;
   private final JAXBArrayAdapter arrayAdapter;
 
+  private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
   public JAXBPlistElementConverter(JAXBDictAdapter dictAdapter, JAXBArrayAdapter arrayAdapter)
   {
     this.dictAdapter = dictAdapter;
     this.arrayAdapter = arrayAdapter;
+    format.setTimeZone(TimeZone.getTimeZone("UTC"));
   }
 
   public Object convertFromJAXB(Object value) throws Exception
@@ -51,6 +60,11 @@ public class JAXBPlistElementConverter
     {
       value = Boolean.FALSE;
     }
+    else if (value instanceof JAXBDate)
+    {
+      JAXBDate date = (JAXBDate) value;
+      value = DatatypeConverter.parseDateTime(date.getValue()).getTime();
+    }
     return value;
   }
 
@@ -67,6 +81,12 @@ public class JAXBPlistElementConverter
     else if (value instanceof Boolean)
     {
       value = ((Boolean) value) ? new JAXBTrue() : new JAXBFalse();
+    }
+    else if (value instanceof Date)
+    {
+      JAXBDate date = new JAXBDate();
+      date.setValue(format.format((Date) value));
+      value = date;
     }
     return value;
   }

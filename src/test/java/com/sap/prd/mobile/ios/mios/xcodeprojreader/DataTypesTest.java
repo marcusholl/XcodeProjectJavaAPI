@@ -24,6 +24,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
+
+import javax.xml.bind.DatatypeConverter;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -118,6 +122,24 @@ public class DataTypesTest
   }
 
   @Test
+  public void dateInDict()
+  {
+    assertEquals(DatatypeConverter.parseDateTime("2012-05-31T14:38:28Z").getTime(), dict.getDate("date"));
+    Date newDate = DatatypeConverter.parseDateTime("2015-05-31T14:38:28Z").getTime();
+    dict.setDate("date", newDate);
+    assertEquals(newDate, dict.getDate("date"));
+  }
+
+  @Test
+  public void dateInArray()
+  {
+    assertEquals(DatatypeConverter.parseDateTime("2012-05-31T14:38:28Z").getTime(), array.getDate(7));
+    Date newDate = DatatypeConverter.parseDateTime("2015-05-31T14:38:28Z").getTime();
+    array.setDate(7, newDate);
+    assertEquals(newDate, array.getDate(7));
+  }
+
+  @Test
   public void dictInDict()
   {
     assertEquals("world", dict.getDict("dict").getString("hello"));
@@ -153,7 +175,7 @@ public class DataTypesTest
   public void getOrCreateAndSetArrayInDict()
   {
     Array array = dict.getOrCreateAndSetArray("arraytest");
-    assertEquals(7, array.size());
+    assertEquals(8, array.size());
     assertEquals("value", array.get(0));
   }
 

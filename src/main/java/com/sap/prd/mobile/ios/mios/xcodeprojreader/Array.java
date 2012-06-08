@@ -19,6 +19,7 @@
  */
 package com.sap.prd.mobile.ios.mios.xcodeprojreader;
 
+import java.util.Date;
 import java.util.List;
 
 public interface Array extends List<Object>
@@ -46,6 +47,12 @@ public interface Array extends List<Object>
   void addBool(Boolean value);
 
   void setBool(int index, Boolean value);
+
+  Date getDate(int index);
+
+  void setDate(int index, Date value);
+
+  void addDate(Date value);
 
   Dict getDict(int index);
 
