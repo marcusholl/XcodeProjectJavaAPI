@@ -35,7 +35,7 @@ public class UsageExamples
   {
     JAXBPlistParser parser = new JAXBPlistParser();
 
-    // optional step, if project file is not already in XML format
+    // Optional step, if project file is not already in XML format.
     // parser.convert(JAXBPlistParserTest.fileName, JAXBPlistParserTest.fileName)
     Plist plist = parser.load(JAXBPlistParserTest.fileName);
 
@@ -64,7 +64,7 @@ public class UsageExamples
     assertEquals("YES",
           buildSettings.getDict().getString("VALIDATE_PRODUCT"));
 
-// LOW LEVEL (not recommended)
+    // LOW LEVEL (not recommended)
     Array buildPhaseRefs = project.getTargets().get(0).getDict().getArray("buildPhases");
     String ref = projectFile.generateReference();
     buildPhaseRefs.add(ref);
@@ -78,13 +78,23 @@ public class UsageExamples
     phase.put("shellScript", "env > test.txt");
     projectFile.setObjectByReference(ref, phase);
 
-// HIGH LEVEL
+    // HIGH LEVEL
     ReferenceArray<BuildPhase> buildPhases = project.getTargets().get(0).getBuildPhases();
     PBXShellScriptBuildPhase phase2 = new PBXShellScriptBuildPhase(projectFile);
     phase2.setDefaultValues();
     phase2.setShellScript("env > test.txt");
     buildPhases.add(phase2);
 
-//parser.save(plist, JAXBPlistParserTest.fileName);
+    /*
+     * Note: Collections are created on the fly.
+     * 
+     * project.getTargets().get(0).getBuildPhases().size() would create a collection of targets and
+     * a collection of build phases if they don't exist. This is important to know, if you intend to
+     * save the property list later. If you don't want this behavior, you have to use the low level
+     * APIs.
+     */
+
+    // Save back to disk
+    // parser.save(plist, JAXBPlistParserTest.fileName);
   }
 }
