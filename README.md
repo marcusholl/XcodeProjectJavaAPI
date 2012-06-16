@@ -11,6 +11,6 @@ See [UsageExamples.java](https://github.com/sap-production/XcodeProjectJavaAPI/b
 
 ##Known limitations
 
-In order to use this library, you have to convert the Xcode project file to XML (see ```convert``` method in [JAXBPlistParser.java](https://github.com/sap-production/XcodeProjectJavaAPI/blob/master/src/main/java/com/sap/prd/mobile/ios/mios/xcodeprojreader/jaxb/JAXBPlistParser.java). This step can only be done on MAC OS X. The project file cannot be converted back!
+In order to use this library, you have to convert the Xcode project file to XML (see ```convert``` method in [JAXBPlistParser.java](https://github.com/sap-production/XcodeProjectJavaAPI/blob/master/src/main/java/com/sap/prd/mobile/ios/mios/xcodeprojreader/jaxb/JAXBPlistParser.java). This step can only be done on Mac OS X. The project file cannot be converted back!
 
 The remainder of the API uses standard Java features.
