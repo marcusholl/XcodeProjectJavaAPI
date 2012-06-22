@@ -21,6 +21,8 @@
         </license>
     </licenses>
     
+    <url>https://github.com/sap-production/XcodeProjectJavaAPI</url>
+    
     <scm>
         <connection>scm:git:https://github.com/sap-production/XcodeProjectJavaAPI.git</connection>
         <developerConnection>scm:git:https://github.com/sap-production/XcodeProjectJavaAPI.git</developerConnection>
