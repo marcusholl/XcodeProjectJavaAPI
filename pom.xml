@@ -4,9 +4,10 @@
     <groupId>com.sap.prd.mobile.ios.mios</groupId>
     <artifactId>xcode-project-java-api</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
+    <name>Xcode Project Java API</name>
     <description>
-        The xcode-project-reader library provides an Java API for read and write 
+        The xcode-project-java-api library provides an Java API for read and write 
         access to an Xcode project file.
     </description>
     <inceptionYear>2012</inceptionYear>
