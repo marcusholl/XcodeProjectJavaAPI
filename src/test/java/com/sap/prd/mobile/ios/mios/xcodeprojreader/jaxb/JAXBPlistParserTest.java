@@ -22,9 +22,12 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -127,10 +130,28 @@ public class JAXBPlistParserTest
     output.deleteOnExit();
     parser.save(plist, output.getAbsolutePath());
 
-    assertXMLEqual(new File(fileName), output);
+    DocumentBuilder db = initDocumentBuilder();
+    Document expected = db.parse(new File(fileName));
+    Document actual = db.parse(output);
+    assertXMLEqual(expected, actual);
   }
 
-  private void assertXMLEqual(File expected, File actual) throws Exception
+  @Test
+  public void saveToWriter() throws Exception
+  {
+    JAXBPlistParser parser = new JAXBPlistParser();
+    Plist plist = parser.load(fileName);
+
+    Writer output = new StringWriter();
+    parser.save(plist, output);
+
+    DocumentBuilder db = initDocumentBuilder();
+    Document expected = db.parse(new File(fileName));
+    Document actual = db.parse(new ByteArrayInputStream(output.toString().getBytes()));
+    assertXMLEqual(expected, actual);
+  }
+
+  private DocumentBuilder initDocumentBuilder() throws Exception
   {
     DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
     db.setEntityResolver(new EntityResolver() {
@@ -141,11 +162,13 @@ public class JAXBPlistParserTest
         return new InputSource(new StringReader(""));
       }
     });
+    return db;
+  }
 
-    Document doc1 = db.parse(expected);
-    Document doc2 = db.parse(actual);
+  private void assertXMLEqual(Document expected, Document actual) throws Exception
+  {
     XMLUnit.setIgnoreWhitespace(true);
     XMLUnit.setIgnoreComments(true);
-    XMLAssert.assertXMLEqual(doc1, doc2);
+    XMLAssert.assertXMLEqual(expected, actual);
   }
 }

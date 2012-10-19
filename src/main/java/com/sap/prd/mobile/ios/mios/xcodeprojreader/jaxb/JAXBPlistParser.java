@@ -22,7 +22,9 @@ package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -107,10 +109,22 @@ public class JAXBPlistParser
 
   public void save(Plist plist, File projectFile) throws JAXBException
   {
+    try
+    {
+      save(plist, new FileWriter(projectFile));
+    }
+    catch (IOException ex)
+    {
+      throw new JAXBException(ex);
+    }
+  }
+
+  public void save(Plist plist, Writer projectFile) throws JAXBException
+  {
     marshallPlist(plist, projectFile);
   }
 
-  private void marshallPlist(Plist plist, File projectFile) throws JAXBException
+  private void marshallPlist(Plist plist, Writer projectFile) throws JAXBException
   {
     JAXBContext ctx = JAXBContext.newInstance(com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb.JAXBPlist.class);
     Marshaller marshaller = ctx.createMarshaller();
