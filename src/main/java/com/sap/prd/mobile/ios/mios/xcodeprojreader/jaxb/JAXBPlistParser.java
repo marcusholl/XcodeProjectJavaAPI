@@ -37,6 +37,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.sax.SAXSource;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -151,6 +152,10 @@ public class JAXBPlistParser
 
   public void convert(File projectFile, File destinationProjectFile) throws IOException
   {
+    if (!SystemUtils.IS_OS_MAC_OSX) {
+      throw new UnsupportedOperationException("The pbxproj file conversion can only be performed on a Mac OS X " +
+            "operating system as the Mac OS X specific tool 'plutil' gets called.");
+    }
     Process exec = Runtime.getRuntime().exec(
           new String[] { "plutil", "-convert", "xml1", "-o", destinationProjectFile.getAbsolutePath(),
               projectFile.getAbsolutePath() });

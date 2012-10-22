@@ -20,7 +20,9 @@
 package com.sap.prd.mobile.ios.mios.xcodeprojreader.jaxb;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -34,6 +36,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import junit.framework.Assert;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.custommonkey.xmlunit.XMLAssert;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Test;
@@ -93,9 +96,19 @@ public class JAXBPlistParserTest
     File xmlProj = File.createTempFile("project", ".pbxproj");
     xmlProj.deleteOnExit();
 
-    parser.convert(fileNameOpenStep, xmlProj.getAbsolutePath());
-    Plist plist = parser.load(xmlProj.getAbsolutePath());
-    assertEquals("1.0", plist.getVersion());
+    try
+    {
+      parser.convert(fileNameOpenStep, xmlProj.getAbsolutePath());
+      Plist plist = parser.load(xmlProj.getAbsolutePath());
+      assertEquals("1.0", plist.getVersion());
+    }
+    catch (UnsupportedOperationException ex)
+    {
+      // If we are running on a non Mac OS X system an UnsupportedOperationException is expected
+      assertFalse("The convert function should only fail on non Mac OS X systems", SystemUtils.IS_OS_MAC_OSX);
+      assertTrue("Wrong UnsupportedOperationException message", ex.getMessage().contains("Mac OS X"));
+    }
+
   }
 
   @Test(expected = javax.xml.bind.UnmarshalException.class)
